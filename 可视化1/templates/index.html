@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基于数据挖掘的工业机械设备故障检测系统</title>
+    <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="static/css/reset.css">
+</head>
+<body>
+<div id="particles-js" class="main">
+    <div class="main_con">
+        <div class="main_top">
+            <div class="main_top_left">
+                <div class="main_top_left_top">
+                    <img src="static/images/main_top_left.png"/>
+                    <div class="main_top_left_top_title">机器质量等级划分</div>
+                    <div class="main_top_left_top_con">
+                        <div class="main_top_left_top_con_list">
+                            <span class="main1">0</span>
+                            <p>高级质量</p>
+                        </div>
+                        <div class="main_top_left_top_con_list">
+                            <span class="main2">0</span>
+                            <p>中级质量</p>
+                        </div>
+                        <div class="main_top_left_top_con_list">
+                            <span class="main3">0</span>
+                            <p>低级质量</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="main_top_left_top main_top_left_bottom">
+                    <img src="static/images/main_top_left.png"/>
+                    <div class="main_top_left_top_title">两种不同模型预测故障</div>
+                    <div id="baseId" class="main_top_left_top_con"></div>
+                </div>
+            </div>
+            <div class="main_top_middle">
+                <div class="main_top_middle_top_title">
+                    <img class="title_bg" src="static/images/title_bg.png">
+                    基于数据挖掘的工业机械设备故障检测系统
+                    <a class="title_web" href="/index" target="">大屏可视化</a>
+                    <a class="title_admin" href="/" target="">主页</a>
+                </div>
+                <div class="main_top_middle_num_title"></div>
+
+                <div class="main_top_middle_bottom">
+                    <div class="main_top_middle_bottom_echarts">
+                        <img src="static/images/main_top_bottom.png">
+                        <div class="main_top_echarts_con">
+                            <div class="main_top_echarts_con_title">机器设备等级占比</div>
+                            <div id="threeTasksId" class="main_top_echarts_pie"></div>
+                        </div>
+                    </div>
+                    <div class="main_top_middle_bottom_echarts main_top_middle_bottom_echarts_right">
+                        <img src="static/images/main_top_bottom.png">
+                        <div class="main_top_echarts_con">
+                            <div class="main_top_echarts_con_title">机器故障类型占比</div>
+                            <div id="publicityId" class="main_top_echarts_pie"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main_top_left main_top_right">
+                <div class="main_top_left_top">
+                    <img src="static/images/main_top_left.png"/>
+                    <div class="main_top_left_top_title">机器故障类型划分</div>
+                    <div class="main_top_left_top_con1">
+                        <div class="main_top_left_top_con_list1">
+                            <span class="daysData">0</span>
+                            <p>Normal</p>
+                        </div>
+                        <div class="main_top_left_top_con_list1">
+                            <span class="weekData">0</span>
+                            <p>HDF</p>
+                        </div>
+                        <div class="main_top_left_top_con_list1">
+                            <span class="monthData">0</span>
+                            <p>OSF</p>
+                        </div>
+                        <div class="main_top_left_top_con_list1">
+                            <span class="someThing">0</span>
+                            <p>PWF</p>
+                        </div>
+                        <div class="main_top_left_top_con_list1">
+                            <span class="data4">0</span>
+                            <p>TWF</p>
+                        </div>
+                        <div class="main_top_left_top_con_list1">
+                            <span class="policyData">0</span>
+                            <p>RNF</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="main_top_left_top main_top_left_bottom">
+                    <img src="static/images/main_top_left.png"/>
+                    <div class="main_top_left_top_title">预测集故障类型占比</div>
+                    <div id="questionId" class="main_top_left_top_con2">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main_bottom">
+            <div class="main_bottom_top">
+                <div class="main_bottom_top_list">
+                    <img src="static/images/main_bottopm_top1.png">
+                    <div class="main_bottom_t_l_title">故障类型说明</div>
+                    <div class="main_bottom_t_l_con">
+                        <div class="main_bottom_t_l_main">
+                            <ul>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_t_list_title1">未发生故障，正常</div>
+                                        <div class="main_bottom_t_list_time main_bottom_t_list_time1">Normal</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_t_list_title2">发生故障，故障类型为散热故障</div>
+                                        <div class="main_bottom_t_list_time main_bottom_t_list_time2">HDF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_t_list_title3">发生故障，故障类型为过载故障</div>
+                                        <div class="main_bottom_t_list_time main_bottom_t_list_time3">OSF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_t_list_title4">发生故障，故障类型为电力故障</div>
+                                        <div class="main_bottom_t_list_time main_bottom_t_list_time4">PWF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_t_list_title5">发生故障，故障类型为磨损故障</div>
+                                        <div class="main_bottom_t_list_time main_bottom_t_list_time4">TWF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_t_list_title6">发生故障，故障类型为其他故障</div>
+                                        <div class="main_bottom_t_list_time main_bottom_t_list_time4">RNF</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="main_bottom_top_list">
+                    <img src="static/images/main_bottopm_top2.png">
+                    <div class="main_bottom_t_l_title">各等级机器设备故障占比</div>
+                    <div id="departmentId" class="main_bottom_t_l_chart"></div>
+                </div>
+                <div class="main_bottom_top_list">
+                    <img src="static/images/main_bottopm_top1.png">
+                    <div class="main_bottom_t_l_title">故障主要成因</div>
+                    <div class="main_bottom_t_l_con">
+                        <div class="main_bottom_t_l_main2">
+                            <ul>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_polity_title1">使用时长，扭矩</div>
+                                        <div class="main_bottom_t_list_time main_bottom_polity_time1">低级设备OSF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_polity_title2">扭矩，转速</div>
+                                        <div class="main_bottom_t_list_time main_bottom_polity_time1">低级设备HDF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_polity_title3">扭矩，功率</div>
+                                        <div class="main_bottom_t_list_time main_bottom_polity_time1">低级设备PWF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_polity_title4">使用时长</div>
+                                        <div class="main_bottom_t_list_time main_bottom_polity_time1">低级设备TWF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_polity_title5">使用时长，转速</div>
+                                        <div class="main_bottom_t_list_time main_bottom_polity_time1">低级设备RNF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_polity_title6">扭矩，功率</div>
+                                        <div class="main_bottom_t_list_time main_bottom_polity_time1">中级设备OSF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_polity_title7">转速，厂房室温</div>
+                                        <div class="main_bottom_t_list_time main_bottom_polity_time1">中级设备HDF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_polity_title8">扭矩，功率</div>
+                                        <div class="main_bottom_t_list_time main_bottom_polity_time1">中级设备PWF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_polity_title9">使用时长</div>
+                                        <div class="main_bottom_t_list_time main_bottom_polity_time1">中级设备TWF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_polity_title10">厂房室温，机器温度</div>
+                                        <div class="main_bottom_t_list_time main_bottom_polity_time1">中级设备RNF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_polity_title11">扭矩，转速</div>
+                                        <div class="main_bottom_t_list_time main_bottom_polity_time1">高级设备HDF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_polity_title12">扭矩，功率，转速</div>
+                                        <div class="main_bottom_t_list_time main_bottom_polity_time1">高级设备PWF</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title main_bottom_polity_title5">厂房室温，机器温度</div>
+                                        <div class="main_bottom_t_list_time main_bottom_polity_time1">高级设备TWF</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main_bottom_bottom">
+                <div class="main_bottom_b_left">
+                    <img src="static/images/main_bottom_bottom.png">
+                    <div class="main_bottom_b_title">基于随机森林的多分类模型评估指标</div>
+                    <div id="coverageId" class="main_bottom_b_con1"></div>
+                </div>
+                <div class="main_bottom_b_middle1">
+                    <img src="static/images/main_bootm_middle.png">
+                    <div class="main_bottom_b_title">低级设备故障成因分析</div>
+                    <div id="contentId" class="main_bottom_b_con main_bottom_b_con2"></div>
+                </div>
+                <div class="main_bottom_b_middle2">
+                    <img src="static/images/main_bootm_middle.png">
+                    <div class="main_bottom_b_title">中级设备故障成因分析</div>
+                    <div id="publicNumId" class="main_bottom_b_con main_bottom_b_con2"></div>
+                </div>
+                <div class="main_bottom_b_middle3">
+                    <img src="static/images/main_bootm_middle.png">
+                    <div class="main_bottom_b_title">高级设备故障成因分析</div>
+                    <div id="yearsNumId" class="main_bottom_b_con"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="https://www.jq22.com/jquery/echarts-4.2.1.min.js"></script>
+<script type="text/javascript" src="static/js/dataScoll.js"></script>
+<script type="text/javascript" src="static/js/digitalScroll.js"></script>
+<script type="text/javascript" src="static/js/jcarousellite.js"></script>
+<script type="text/javascript" src="static/js/particles.min.js"></script>
+<script type="text/javascript" src="static/js/app.js"></script>
+
+<script>
+    $(function() {
+        function apiFn() {
+            this.hostname = ""
+        }
+        apiFn.prototype = {
+            Init:function() {
+                this.findCount()
+                this.DataFn()
+                this.otherDataFn()
+                this.baseInfo()
+                this.questionFn()
+                this.publicityFn()
+                this.threeTasksFn()
+                this.departmentFn()
+                this.guideFn()
+                this.policyFn()
+                this.coverageFn()
+                this.yearsNumFn()
+                this.contentFn()
+                this.publicNumFn()
+                setInterval(function() {
+                    numInit()
+                },6000)
+            },
+            findCount:function() {
+
+            },
+            // 第一个数据展示
+            DataFn:function () {
+                $(".main1").addClass("counter-value").text({{num[0]}})
+                $(".main2").addClass("counter-value").text({{num[1]}})
+                $(".main3").addClass("counter-value").text({{num[2]}})
+            },
+            // 其他数据展示
+            otherDataFn:function() {
+                $(".daysData").addClass("counter-value").text({{num2[0]}})
+                $(".weekData").addClass("counter-value").text({{num2[1]}})
+                $(".monthData").addClass("counter-value").text({{num2[2]}})
+                $(".someThing").addClass("counter-value").text({{num2[3]}})
+                $(".data4").addClass("counter-value").text({{num2[4]}})
+                $(".policyData").addClass("counter-value").text({{num2[5]}})
+            },
+            // 基础信息
+            baseInfo:function() {
+
+
+                var baseChart = echarts.init(document.getElementById('baseId'));
+                var charts = [
+                    {name: "LightGBM", num: 77},
+                    {name: "RF", num: 73}
+                ]
+                var color = ['rgba(100,255,249', 'rgba(100,255,249', 'rgba(100,255,249', 'rgba(100,255,249', 'rgba(100,255,249']
+
+                let lineY = []
+                for (var i = 0; i < charts.length; i++) {
+                var x = i
+                if (x > color.length - 1) {
+                    x = color.length - 1
+                }
+                var data = {
+                    name: charts[i].name,
+                    color: color[x] + ')',
+                    value: charts[i].num,
+                    itemStyle: {
+                    normal: {
+                        show: true,
+                        color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                        offset: 0,
+                        color: color[x] + ', 0.3)'
+                        }, {
+                        offset: 1,
+                        color: color[x] + ', 1)'
+                        }], false),
+                        barBorderRadius: 10
+                    },
+                    emphasis: {
+                        shadowBlur: 15,
+                        shadowColor: 'rgba(0, 0, 0, 0.1)'
+                    }
+                    }
+                }
+                lineY.push(data)
+                }
+                var option= {
+                title: {
+                    show: false
+                },
+                grid: {
+                    // borderWidth: 1,
+                    top: '5%',
+                    left: '30%',
+                    right: '20%',
+                    bottom: '5%'
+                },
+                color: color,
+                yAxis: [{
+                    type: 'category',
+                    inverse: true,
+                    axisTick: {
+                    show: false
+                    },
+                    axisLine: {
+                    show: false
+                    },
+                    axisLabel: {
+                    show: false,
+                    inside: false
+                    },
+                    data: charts.name
+                }, {
+                    type: 'category',
+                    inverse: true,
+                    axisLine: {
+                    show: false
+                    },
+                    axisTick: {
+                    show: false
+                    },
+                    axisLabel: {
+                    show: true,
+                    inside: false,
+                    textStyle: {
+                        color: '#38E1E1',
+                        fontSize: '13',
+                    },
+                    formatter: function (val,index) {
+                        return `${charts[index].num}`
+                    }
+                    },
+                    splitArea: {
+                    show: false
+                    },
+                    splitLine: {
+                    show: false
+                    },
+                    data: charts
+                }],
+                xAxis: {
+                    // type: 'value',
+                    axisTick: {
+                    show: false
+                    },
+                    axisLine: {
+                    show: false
+                    },
+                    splitLine: {
+                    show: false
+                    },
+                    axisLabel: {
+                    show: false
+                    }
+                },
+                series: [{
+                    name: '',
+                    type: 'bar',
+                    zlevel: 2,
+                    barWidth: '5px',
+                    data: lineY,
+                    animationDuration: 1500,
+                    label: {
+                    normal: {
+                        color: 'white',
+                        show: true,
+                        position: [-65, -2],
+                        textStyle: {
+                        fontSize: 13
+                        },
+                        formatter: function (a, b) {
+                            return a.name
+                        }
+                    }
+                    }
+                }],
+                animationEasing: 'cubicOut'
+                }
+                baseChart.setOption(option)
+                setInterval(function() {
+                    baseChart.clear()
+                    baseChart.setOption(option)
+                },40000)
+            },
+            // 问题反馈类型占比
+            questionFn:function() {
+                var numArr = [
+                    {name: '{{false_type[0]}}', value: {{num1[0]}}},
+                    {name: '{{false_type[1]}}', value: {{num1[1]}}},
+                    {name: '{{false_type[2]}}', value: {{num1[2]}}},
+                    {name: '{{false_type[3]}}', value: {{num1[3]}}},
+                    {name: '{{false_type[4]}}', value: {{num1[4]}}},
+                    {name: '{{false_type[5]}}', value: {{num1[5]}}},
+                ]
+                // for(var i = 0; i < data.list.length; i++) {
+                //     numArr.push({name: data.list[i].name,value: data.list[i].num})
+                // }
+                var datas = numArr
+                var questionChart = echarts.init(document.getElementById('questionId'));
+                var option = {
+                    title: {
+                        left: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: '{a} <br/>{b} : {c} ({d}%)'
+                    },
+                    color:['#2E8CFF', '#FD9133','#37D2D4','#19CA88','#858FF8'],
+                    legend: {
+                        itemWidth: 11,// 标志图形的长度
+                        itemHeight: 11,// 标志图形的宽度
+                        orient: 'vertical',
+                        // left: 'right',
+                        top: '15%',
+                        x: '50%',
+                        data: datas,
+                        textStyle: { //图例文字的样式
+                            color: '#fff',
+                            fontSize: 15
+                        },
+                    },
+                    series: [
+                        {
+                            name: '故障类型',
+                            type: 'pie',
+                            radius: '75%',
+                            center: ['20%', '50%'],
+                            animationDuration: 2500,
+                            data: datas,
+                            label: {
+                                normal: {
+                                    position: 'inner',
+                                    show : false
+                                }
+                            }
+                        }
+                    ]
+                };
+                questionChart.setOption(option)
+                setInterval(function() {
+                    questionChart.clear()
+                    questionChart.setOption(option)
+                },8000)
+            },
+            // 党务公开
+            publicityFn:function() {
+                var dataArr = [
+                    {name: {{false_type[0]|tojson}}, value: {{num2[0]}}},
+                    {name: {{false_type[1]|tojson}}, value: {{num2[1]}}},
+                    {name: {{false_type[3]|tojson}}, value: {{num2[2]}}},
+                    {name: {{false_type[2]|tojson}}, value: {{num2[3]}}},
+                    {name: {{false_type[4]|tojson}}, value: {{num2[4]}}},
+                    {name: {{false_type[5]|tojson}}, value: {{num2[5]}}},
+                ]
+                // for(var i = 0; i < res.list.length; i++) {
+                //     dataArr.push({name: res.list[i].name, value: res.list[i].num})
+                // }
+
+                var publicitChart = echarts.init(document.getElementById('publicityId'));
+                var data = dataArr
+                var option = {
+                    color: ['#38EB70', '#F7E16C', '#0EFCFF', '#FD9133', '#4D92F2'],
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: '{a} <br/>{b} : {c} ({d}%)'
+                    },
+                    legend: {
+                        itemWidth: 12,// 标志图形的长度
+                        itemHeight: 12,// 标志图形的宽度
+                        orient: 'vertical',
+                        // left: 'right',
+                        top: '5%',
+                        bottom: '50%',
+                        x: '45%',
+                        textStyle: {
+                            color: '#fff',
+                            fontSize: 15,
+
+                        },
+                        data: data,
+                    },
+                    series: [
+                        // 主要展示层的
+                        {
+                            radius: ['70%', '90%'],
+                            center: ['25%', '50%'],
+                            type: 'pie',
+                            label: {
+                                normal: {
+                                    position: 'inner',
+                                    show : false
+                                }
+                            },
+                            name: "机器故障类型占比",
+                            data: data,
+                        },
+                        // 边框的设置
+                        {
+                            radius: ['50%', '55%'],
+                            center: ['25%', '50%'],
+                            type: 'pie',
+                            label: {
+                                normal: {
+                                    show: false
+                                },
+                                emphasis: {
+                                    show: false
+                                }
+                            },
+                            labelLine: {
+                                normal: {
+                                    show: false
+                                },
+                                emphasis: {
+                                    show: false
+                                }
+                            },
+                            animation: false,
+                            tooltip: {
+                                show: false
+                            },
+                            data: [{
+                                value: 1,
+                                itemStyle: {
+                                    color: "rgba(250,250,250,0.3)",
+                                },
+                            }],
+                        }
+                    ]
+                };
+                publicitChart.setOption(option)
+                setInterval(function() {
+                    publicitChart.clear()
+                    publicitChart.setOption(option)
+                },6000)
+            },
+            // 三务公开数量
+            threeTasksFn:function() {
+                let names = "666666";
+                if(6 - names.length > 0) {
+                    for(g = 0; g < 6 - names.length; g++) {
+                        $(".main_top_middle_num_list"+(6 - g)).text('0')
+                    }
+                }
+                for(var j = 0; j < names.length; j++) {
+                    $(".main_top_middle_num_list"+(names.length - j)).text(names.substr(j,1))
+                }
+                var dataArr = [
+                    {name: '高级质量', value: {{num[0]}}},
+                    {name: '中级质量', value: {{num[1]}}},
+                    {name: '低级质量', value: {{num[2]}}},
+                ]
+                for(var i = 1; i < dataArr.length; i++) {
+                    $(".main_top_left_c_l_n"+i).addClass("counter-value").text(dataArr[i].value)
+                }
+                var threeTasksChart = echarts.init(document.getElementById('threeTasksId'));
+                var data = dataArr
+                var option = {
+                    color: ['#0EFCFF', '#FD9133','#F7E270'],
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: {
+                        itemWidth: 15,// 标志图形的长度
+                        itemHeight: 15,// 标志图形的宽度
+                        orient: 'vertical',
+                        // left: 'right',
+                        top: '10%',
+                        bottom: '50%',
+                        x: '50%',
+                        textStyle: {
+                            color: '#fff',
+                            fontSize: 15,
+
+                        },
+                        data: data
+                    },
+                    series :
+                        {
+                            name:'机器设备等级占比',
+                            type:'pie',
+                            animationDuration: 1500,
+                            radius: ['70%', '90%'],
+                            center: ['25%', '50%'],
+                            roseType : 'radius',
+                            label: {
+                                normal: {
+                                    position: 'inner',
+                                    show : false
+                                }
+                            },
+                            data:data
+                        }
+                };
+                threeTasksChart.setOption(option)
+                setInterval(function() {
+                    threeTasksChart.clear()
+                    threeTasksChart.setOption(option)
+                },4000)
+            },
+            // 各部门苏木镇嘎查村公开占比
+            departmentFn:function() {
+                 var data_low = [
+                    {name: '{{false_type1[0]}}', value: {{num3[0]}}},
+                    {name: '{{false_type1[1]}}', value: {{num3[1]}}},
+                    {name: '{{false_type1[2]}}', value: {{num3[2]}}},
+                    {name: '{{false_type1[3]}}', value: {{num3[3]}}},
+                    {name: '{{false_type1[4]}}', value: {{num3[4]}}},
+                ]
+                var data_med = [
+                    {name: '{{false_type2[0]}}', value: {{num4[0]}}},
+                    {name: '{{false_type2[1]}}', value: {{num4[1]}}},
+                    {name: '{{false_type2[2]}}', value: {{num4[2]}}},
+                    {name: '{{false_type2[3]}}', value: {{num4[3]}}},
+                    {name: '{{false_type2[4]}}', value: {{num4[4]}}},
+                ]
+                var data_high = [
+                    {name: '{{false_type3[0]}}', value: {{num5[0]}}},
+                    {name: '{{false_type3[1]}}', value: {{num5[1]}}},
+                    {name: '{{false_type3[2]}}', value: {{num5[2]}}},
+                    {name: '{{false_type3[3]}}', value: {{num5[3]}}},
+                ]
+                    // 中间滚动数据展示
+                    for(var j = 0; j < data_low.length; j++) {
+                        $(".main_list_title_num"+(j+1)).addClass("counter-value").text(data_low[j].value)
+                        $(".main_list_title"+(j+1)).text(data_low[j].name)
+                    }
+                    for(var j = 0; j < data_med.length; j++) {
+                        $(".main_list_title_num"+(j+1)).addClass("counter-value").text(data_med[j].value)
+                        $(".main_list_title"+(j+1)).text(data_med[j].name)
+                    }
+                    for(var j = 0; j < data_high.length; j++) {
+                        $(".main_list_title_num"+(j+1)).addClass("counter-value").text(data_high[j].value)
+                        $(".main_list_title"+(j+1)).text(data_high[j].name)
+                    }
+                var departmentChart = echarts.init(document.getElementById('departmentId'));
+                var option = {
+                    color: ['#FD9133', '#47F6A2', '#37D2D4', '#3493FF','#F7E16C'],
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    series: [
+                        {
+                            name: '低级机器设备故障类别占比',
+                            type: 'pie',
+                            radius: ['30%', '40%'],
+                            center: ['18%', '52%'],
+                            labelLine: {
+                                normal: {
+                                    length: 12,
+                                    lineStyle: {
+                                        type: 'solid',
+                                        color: '#0EFCFF'
+                                    }
+                                }
+
+                            },
+                            data: data_low
+                        },
+                        {
+                            name: '中级机器设备故障类别占比',
+                            type: 'pie',
+                            radius: ['30%', '40%'],
+                            center: ['50%', '52%'],
+                            labelLine: {
+                                normal: {
+                                    length: 12,
+                                    lineStyle: {
+                                        type: 'solid',
+                                        color: '#0EFCFF'
+                                    }
+                                }
+
+                            },
+                            data: data_med
+                        },
+                        {
+                            name: '高级机器设备故障类别占比',
+                            type: 'pie',
+                            radius: ['30%', '40%'],
+                            center: ['82%', '52%'],
+                            labelLine: {
+                                normal: {
+                                    length: 12,
+                                    lineStyle: {
+                                        type: 'solid',
+                                        color: '#0EFCFF'
+                                    }
+                                }
+
+                            },
+                            data: data_high
+                        }
+                    ]
+                };
+                departmentChart.setOption(option);
+                setInterval(function() {
+                    departmentChart.clear()
+                    departmentChart.setOption(option)
+                },12000)
+            },
+            // 办事指南
+            guideFn:function() {
+                $(".main_bottom_t_l_main").jCarouselLite({
+                    vertical: true,
+                    hoverPause:true,
+                    visible: 4,
+                    auto: 1000,
+                    speed: 500
+                });
+            },
+            // 政策解读
+            policyFn:function() {
+                $(".main_bottom_t_l_main2").jCarouselLite({
+                    vertical: true,
+                    hoverPause:true,
+                    visible: 4,
+                    auto: 1000,
+                    speed: 500
+                });
+            },
+            // 主要关注内容区域占比
+            coverageFn:function() {
+                var chartDom = document.getElementById('coverageId');
+                var coverageChart = echarts.init(chartDom);
+                var option;
+
+                const seriesLabel = {
+                  show: true
+                };
+                option = {
+                  tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                      type: 'shadow'
+                    }
+                  },
+                  grid: {
+                    containLabel: true,
+                     left: 10,
+                     top: 10,
+                     right: 15,
+                     bottom: 28
+                  },
+                  xAxis: {
+                    type: 'value',
+                    name: '',
+                    axisLabel: {
+                      formatter: '{value}',
+                      color: "white",
+                      fontSize:15
+
+                    }
+                  },
+                  yAxis: {
+                    type: 'category',
+                    inverse: true,
+                    data: ['低级机器', '中级机器', '高级机器'],
+                    axisLabel: {
+                      margin: 15,
+                      color: "white",
+                      fontSize:15
+                    }
+                  },
+                  series: [
+                    {
+                      name: '卡帕系数',
+                      type: 'bar',
+                      data: [0.981, 0.994, 0.991],
+                      label: seriesLabel,
+                    },
+                    {
+                      name: '海明距离',
+                      type: 'bar',
+                      label: seriesLabel,
+                      data: [0.015, 0.005, 0.006]
+                    },
+                    {
+                      name: 'Precision',
+                      type: 'bar',
+                      label: seriesLabel,
+                      data: [0.985, 0.997, 0.991]
+                    },
+                    {
+                      name: 'Recall',
+                      type: 'bar',
+                      label: seriesLabel,
+                      data: [0.986, 0.996, 0.991]
+                    },
+                    {
+                      name: 'F1-scroe',
+                      type: 'bar',
+                      label: seriesLabel,
+                      data: [0.986, 0.997, 0.988]
+                    }
+                  ]
+                };
+
+                option && coverageChart.setOption(option);
+                setInterval(function() {
+                    coverageChart.clear()
+                    coverageChart.setOption(option)
+                },10000)
+            },
+            // 本年公开数量
+            yearsNumFn:function() {
+                var app = {};
+
+                var chartDom = document.getElementById('yearsNumId');
+                var yearsNumChart = echarts.init(chartDom);
+                var option;
+
+                option = {
+                  grid: {
+                     containLabel: true,
+                     left: 0,
+                     top: 25,
+                     right: 0,
+                     bottom: 15
+                 },
+                  legend: {
+                     textStyle: {
+                            color: "#fff",
+                            fontSize: 15
+                        }
+                  },
+                  tooltip: {
+                      color:'white'
+                  },
+                  dataset: {
+                    source: [
+                      ['product', '扭矩', '功率', '转速', '厂房室温', '机器温度'],
+                      ['HDF', 0.3135, 0.1696, 0.3789, 0.1197, 0.0183],
+                      ['PWF', 0.2228, 0.2274, 0.4238, 0.0632, 0.0628],
+                      ['TWF', 0.0766, 0.1864, 0.1624, 0.3491, 0.2256]
+                    ]
+                  },
+                  xAxis: {
+                      type: 'category',
+                      axisLabel:{
+                          margin:15,
+                          color:"white",
+                          fontSize:15
+                      }
+                  },
+                  yAxis: {
+                      type:'value',
+                      axisLabel:{
+                          color:"white",
+                          fontSize:15
+                      }
+                  },
+                  // Declare several bar series, each will be mapped
+                  // to a column of dataset.source by default.
+                  series: [
+                    { type: 'bar',color: '#FD9133' },
+                    { type: 'bar',color: '#19CA88' },
+                    { type: 'bar',color: '#1942ca'},
+                    { type: 'bar' },
+                    { type: 'bar',color: '#d30eff'}
+                  ]
+                };
+
+                option && yearsNumChart.setOption(option);
+                //实时数据处理
+
+            },
+            // 关注内容区域占比
+            contentFn:function() {
+                var app = {};
+
+                var chartDom = document.getElementById('contentId');
+                var contentChart = echarts.init(chartDom);
+                var option;
+
+
+                option = {
+                 grid: {
+                     containLabel: true,
+                     left: 0,
+                     top: 25,
+                     right: 0,
+                     bottom: 0
+                 },
+                  legend: {
+                     textStyle: {
+                            color: "#fff",
+                            fontSize: 15
+                        }
+                  },
+                  tooltip: {
+                      color:'white'
+                  },
+                  dataset: {
+                    source: [
+                      ['product', '使用时长', '扭矩', '功率', '转速'],
+                      ['OSF', 0.46, 0.3349, 0.1911, 0.0139],
+                      ['HDF', 0.0574, 0.2122, 0.0932, 0.6373],
+                      ['PWF', 0.007, 0.3303, 0.5601, 0.109],
+                      ['TWF', 0.8317, 0.0923, 0.0428, 0.0332],
+                      ['RNF', 0.6032, 0.0785, 0.0615, 0.2568]
+                    ]
+                  },
+                  xAxis: {
+                      type: 'category',
+                      axisLabel:{
+                          margin:15,
+                          color:"white",
+                          fontSize:15
+                      }
+                  },
+                  yAxis: {
+                      type:'value',
+                      axisLabel:{
+                          color:"white",
+                          fontSize:15
+                      }
+                  },
+                  // Declare several bar series, each will be mapped
+                  // to a column of dataset.source by default.
+                  series: [{ type: 'bar',color:'#0EFCFF' }, { type: 'bar',color:'#FD9133'  }, { type: 'bar',color: '#19CA88' }, { type: 'bar' }]
+                };
+
+                option && contentChart.setOption(option);
+                setInterval(function() {
+                    contentChart.clear()
+                    contentChart.setOption(option)
+                },90000)
+            },
+            // 巡察
+            publicNumFn:function() {
+                var app = {};
+
+                var chartDom = document.getElementById('publicNumId');
+                var publicNumChart = echarts.init(chartDom);
+                var option;
+
+                option = {
+                 grid: {
+                     containLabel: true,
+                     left: 0,
+                     top: 25,
+                     right: 0,
+                     bottom: 0
+                 },
+                  legend: {
+                     textStyle: {
+                            color: "#fff",
+                            fontSize: 15
+                        }
+                  },
+                  tooltip: {
+                      color:'white'
+                  },
+                  dataset: {
+                    source: [
+                      ['product', '使用时长', '扭矩', '功率', '转速', '厂房室温', '机器温度'],
+                      ['OSF', 0.1686, 0.3969, 0.2941, 0.1335, 0.0035, 0.0034],
+                      ['HDF', 0.0059, 0.1054, 0.0772, 0.4143, 0.3066, 0.0906],
+                      ['PWF', 0.0227, 0.35, 0.4076, 0.1876, 0.0222, 0.0099],
+                      ['TWF', 0.7521, 0.033, 0.0364, 0.0583, 0.0793, 0.0409],
+                      ['RNF', 0.1703, 0.0752, 0.0846, 0.1503, 0.2773, 0.2422]
+                    ]
+                  },
+                   xAxis: {
+                      type: 'category',
+                      axisLabel:{
+                          margin:15,
+                          color:"white",
+                          fontSize:15
+                      }
+                  },
+                  yAxis: {
+                      type:'value',
+                      axisLabel:{
+                          color:"white",
+                          fontSize:15
+                      }
+                  },
+                  // Declare several bar series, each will be mapped
+                  // to a column of dataset.source by default.
+                  series: [
+                    { type: 'bar',color: '#0EFCFF' },
+                    { type: 'bar',color: '#FD9133' },
+                    { type: 'bar',color: '#19CA88' },
+                    { type: 'bar',color: '#1942ca'},
+                    { type: 'bar' },
+                    { type: 'bar',color: '#d30eff'}
+                  ]
+                };
+
+                option && publicNumChart.setOption(option);
+                setInterval(function() {
+                    publicNumChart.clear()
+                    publicNumChart.setOption(option)
+                },60000)
+            }
+
+        }
+        var start = new apiFn()
+        start.Init()
+    })
+</script>

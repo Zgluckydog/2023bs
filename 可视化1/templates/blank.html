@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>主页</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap Core CSS -->
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="static/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="static/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="static/vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">主页</a>
+                <a class="navbar-brand" href="/index">大屏可视化</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="/"><i class="fa fa-dashboard fa-fw"></i> 故障预测</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 信息展示<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/flot">信息页一</a>
+                                </li>
+                                <li>
+                                    <a href="/morris">信息页二</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="/tables"><i class="fa fa-table fa-fw"></i> 表格展示</a>
+                        </li>
+                        <li>
+                            <a href="/blank"><i class="fa fa-files-o fa-fw"></i> 空白页</a>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+    </div>
+    <div style="width: 300px; height: 200px; background-image: url('../tree.jpg'); background-size: cover; background-position: center;"></div>
+    <div style="margin: 0 0 0 300px">
+        <h2>中级机器</h2>
+        <form id="iris-form1"> <!-- 输入表单 -->
+            <label for="feature12">厂房室温:</label> <!-- Sepal Length 输入框标签 -->
+            <input type="number" id="feature12" name="feature12" step="any" required> <!-- Sepal Length 输入框 -->
+            <label for="feature22">机器温度:</label> <!-- Sepal Width 输入框标签 -->
+            <input type="number" id="feature22" name="feature22" step="any" required> <!-- Sepal Width 输入框 -->
+            <label for="feature32">转速:</label> <!-- Petal Length 输入框标签 -->
+            <input type="number" id="feature32" name="feature32" step="any" required> <!-- Petal Length 输入框 -->
+            <label for="feature42">扭矩:</label> <!-- Petal Width 输入框标签 -->
+            <input type="number" id="feature42" name="feature42" step="any" required> <!-- Petal Width 输入框 -->
+            <label for="feature52">功率:</label>
+            <input type="number" id="feature52" name="feature52" step="any" required>
+            <label for="feature62">使用时长:</label>
+            <input type="number" id="feature62" name="feature62" step="any" required>
+            <button type="submit">点击预测</button> <!-- 提交按钮 -->
+        </form>
+        <div id="result1"></div> <!-- 预测结果显示区域 -->
+        <h2>中级机器（批量）</h2>
+        <form id="file-form1" enctype="multipart/form-data"> <!-- 文件上传表单 -->
+            <input type="file" name="file1" required> <!-- 文件上传组件 -->
+            <br>
+            <button type="submit">点击预测</button> <!-- 提交按钮 -->
+        </form>
+        <div id="file-result1"></div> <!-- 预测结果显示区域 -->
+        <script src="{{ url_for('static', filename='predict1.js') }}"></script> <!-- 引入 JavaScript 文件 -->
+
+    </div>
+    <div style="margin: 0 0 0 300px">
+        <h2>低级机器</h2>
+        <form id="iris-form2"> <!-- 输入表单 -->
+            <label for="feature13">转速:</label> <!-- Sepal Length 输入框标签 -->
+            <input type="number" id="feature13" name="feature13" step="any" required> <!-- Sepal Length 输入框 -->
+            <label for="feature23">扭矩:</label> <!-- Sepal Width 输入框标签 -->
+            <input type="number" id="feature23" name="feature23" step="any" required> <!-- Sepal Width 输入框 -->
+            <label for="feature33">功率:</label> <!-- Petal Length 输入框标签 -->
+            <input type="number" id="feature33" name="feature33" step="any" required> <!-- Petal Length 输入框 -->
+            <label for="feature43">使用时长:</label> <!-- Petal Width 输入框标签 -->
+            <input type="number" id="feature43" name="feature43" step="any" required> <!-- Petal Width 输入框 -->
+            <button type="submit">点击预测</button> <!-- 提交按钮 -->
+        </form>
+        <div id="result2"></div> <!-- 预测结果显示区域 -->
+        <h2>低级机器（批量）</h2>
+        <form id="file-form2" enctype="multipart/form-data"> <!-- 文件上传表单 -->
+            <input type="file" name="file2" required> <!-- 文件上传组件 -->
+            <br>
+            <button type="submit">点击预测</button> <!-- 提交按钮 -->
+        </form>
+        <div id="file-result2"></div> <!-- 预测结果显示区域 -->
+        <script src="{{ url_for('static', filename='predict2.js') }}"></script> <!-- 引入 JavaScript 文件 -->
+    </div>
+    <div style="margin: 0 0 0 300px">
+        <h1>发生故障种类预测（0-无故障,1-HDF,2-TWF,3-OSF,4-PWF,5-RNF）</h1>
+        <h2>高级机器</h2>
+        <form id="high-form"> <!-- 输入表单 -->
+            <label for="shiwen2">厂房室温:</label> <!-- Sepal Length 输入框标签 -->
+            <input type="number" id="shiwen2" name="shiwen2" step="any" required> <!-- Sepal Length 输入框 -->
+            <label for="jiwen2">机器温度:</label> <!-- Sepal Width 输入框标签 -->
+            <input type="number" id="jiwen2" name="jiwen2" step="any" required> <!-- Sepal Width 输入框 -->
+            <label for="zhuansu2">转速:</label> <!-- Petal Length 输入框标签 -->
+            <input type="number" id="zhuansu2" name="zhuansu2" step="any" required> <!-- Petal Length 输入框 -->
+            <label for="niuju2">扭矩:</label> <!-- Petal Width 输入框标签 -->
+            <input type="number" id="niuju2" name="niuju2" step="any" required> <!-- Petal Width 输入框 -->
+            <label for="gonglv2">功率:</label>
+            <input type="number" id="gonglv2" name="gonglv2" step="any" required>
+            <button type="submit">点击预测</button> <!-- 提交按钮 -->
+        </form>
+        <div id="result_high"></div> <!-- 预测结果显示区域 -->
+        <h2>高级机器（批量）</h2>
+        <form id="highfile-form" enctype="multipart/form-data"> <!-- 文件上传表单 -->
+            <input type="file" name="file_high" required> <!-- 文件上传组件 -->
+            <br>
+            <button type="submit">点击预测</button> <!-- 提交按钮 -->
+        </form>
+        <div id="file-result_high"></div> <!-- 预测结果显示区域 -->
+        <script src="{{ url_for('static', filename='predict5.js') }}"></script>
+
+    </div>
+    <div style="margin: 0 0 0 300px">
+        <h2>中级机器</h2>
+        <form id="med-form"> <!-- 输入表单 -->
+            <label for="shiwen">厂房室温:</label> <!-- Petal Width 输入框标签 -->
+            <input type="number" id="shiwen" name="shiwen" step="any" required> <!-- Petal Width 输入框 -->
+            <label for="jiwen">机器温度:</label> <!-- Petal Width 输入框标签 -->
+            <input type="number" id="jiwen" name="jiwen" step="any" required> <!-- Petal Width 输入框 -->
+            <label for="zhuansu1">转速:</label> <!-- Petal Width 输入框标签 -->
+            <input type="number" id="zhuansu1" name="zhuansu1" step="any" required> <!-- Petal Width 输入框 -->
+            <label for="niuju1">扭矩:</label> <!-- Sepal Length 输入框标签 -->
+            <input type="number" id="niuju1" name="niuju1" step="any" required> <!-- Sepal Length 输入框 -->
+            <label for="gonglv1">功率:</label> <!-- Sepal Width 输入框标签 -->
+            <input type="number" id="gonglv1" name="gonglv1" step="any" required> <!-- Sepal Width 输入框 -->
+            <label for="shichang1">时长:</label> <!-- Petal Length 输入框标签 -->
+            <input type="number" id="shichang1" name="shichang1" step="any" required> <!-- Petal Length 输入框 -->
+            <button type="submit">点击预测</button> <!-- 提交按钮 -->
+        </form>
+        <div id="result_med"></div> <!-- 预测结果显示区域 -->
+        <h2>中级机器（批量）</h2>
+        <form id="medfile-form" enctype="multipart/form-data"> <!-- 文件上传表单 -->
+            <input type="file" name="file_med" required> <!-- 文件上传组件 -->
+            <br>
+            <button type="submit">点击预测</button> <!-- 提交按钮 -->
+        </form>
+        <div id="file-result_med"></div> <!-- 预测结果显示区域 -->
+        <script src="{{ url_for('static', filename='predict4.js') }}"></script> <!-- 引入 JavaScript 文件 -->
+    </div>
+    <div style="margin: 0 0 0 300px">
+        <h2>低级机器</h2>
+        <form id="low-form"> <!-- 输入表单 -->
+            <label for="niuju">扭矩:</label> <!-- Sepal Length 输入框标签 -->
+            <input type="number" id="niuju" name="niuju" step="any" required> <!-- Sepal Length 输入框 -->
+            <label for="gonglv">功率:</label> <!-- Sepal Width 输入框标签 -->
+            <input type="number" id="gonglv" name="gonglv" step="any" required> <!-- Sepal Width 输入框 -->
+            <label for="shichang">使用时长:</label> <!-- Petal Length 输入框标签 -->
+            <input type="number" id="shichang" name="shichang" step="any" required> <!-- Petal Length 输入框 -->
+            <label for="zhuansu">转速:</label> <!-- Petal Width 输入框标签 -->
+            <input type="number" id="zhuansu" name="zhuansu" step="any" required> <!-- Petal Width 输入框 -->
+            <button type="submit">点击预测</button> <!-- 提交按钮 -->
+        </form>
+        <div id="result_low"></div> <!-- 预测结果显示区域 -->
+        <h2>低级机器（批量）</h2>
+        <form id="lowfile-form" enctype="multipart/form-data"> <!-- 文件上传表单 -->
+            <input type="file" name="file_low" required> <!-- 文件上传组件 -->
+            <br>
+            <button type="submit">点击预测</button> <!-- 提交按钮 -->
+        </form>
+        <div id="file-result_low"></div> <!-- 预测结果显示区域 -->
+    <script src="{{ url_for('static', filename='predict3.js') }}"></script> <!-- 引入 JavaScript 文件 -->
+
+</div>
+
+    <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="static/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="static/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="static/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="static/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="static/js/sb-admin-2.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <script src="static/assets/js/echarts.min.js"></script>
+  <title>基于数据挖掘的工业机械设备故障检测系统</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="static/assets/img/favicon.png" rel="icon">
+  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="static/assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="container">
+
+      <nav class="nav-menu float-right d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="/index">首页 <i class="la la-angle-down"></i></a></li>
+          <li><a href="/movie">电影</a></li>
+          <li><a href="/score">评分</a></li>
+          <li><a href="/word">词云</a></li>
+          <li><a href="/team">团队</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+
+    <!-- ======= Our Team Section ======= -->
+    <section id="team" class="team">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>故障</h2>
+        </div>
+            <!-- ======= Counts Section ======= -->
+    <section class="counts section-bg">
+      <div class="container">
+        <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+        <div id="main1" style="width:100%;height:400px;"></div>
+        <div id="main2" style="width:100%;height:400px;"></div>
+        <div id="main3" style="width:100%;height:400px;"></div>
+      </div>
+    </section><!-- End Counts Section -->
+      </div>
+    </section><!-- End Our Team Section -->
+
+    <script type="text/javascript">
+        var chartDom = document.getElementById('main1');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        option = {
+          title: {
+            left: 'center',
+            text: '低级机器故障分类'
+            },
+          xAxis: {
+            type: 'category',
+            data: ['OSF', 'HDF', 'PWF', 'TWF', 'RNF']
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [
+            {
+              data: [
+                {
+                  value: 77,
+                  itemStyle: {
+                    color: 'yellow'
+                  }
+                },
+                {
+                  value: 62,
+                  itemStyle: {
+                    color: 'pink'
+                  }
+                },
+                {
+                  value: 45,
+                  itemStyle: {
+                    color: 'red'
+                  }
+                },
+                {
+                  value: 22,
+                  itemStyle: {
+                    color: 'blue'
+                  }
+                },
+                {
+                  value: 2,
+                  itemStyle: {
+                    color: 'purple'
+                  }
+                }
+              ],
+              type: 'bar'
+               }
+          ]
+        };
+
+        option && myChart.setOption(option);
+
+  </script>
+
+  <script type="text/javascript">
+        var chartDom = document.getElementById('main2');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        option = {
+          title: {
+            left: 'center',
+            text: '低中高故障分类饼图'
+            },
+          dataset: [
+            {
+              source: [
+                ['false_type', 'num', 'Price', 'grade'],
+                ['OSF', 77, 77, 1],
+                ['HDF', 62, 62, 1],
+                ['PWF', 45, 45, 1],
+                ['TWF', 22, 22, 1],
+                ['RNF', 2, 2, 1],
+                ['OSF', 7, 7, 2],
+                ['HDF', 27, 27, 2],
+                ['PWF', 25, 25, 2],
+                ['TWF', 14, 14, 2],
+                ['RNF', 4, 4, 2],
+                ['OSF', 1, 1, 3],
+                ['HDF', 6, 6, 3],
+                ['PWF', 4, 4, 3],
+                ['TWF', 5, 5, 3],
+                ['RNF', 0, 0, 3]
+              ]
+            },
+            {
+              transform: {
+                type: 'filter',
+                config: { dimension: 'grade', value: 1 }
+              }
+            },
+            {
+              transform: {
+                type: 'filter',
+                config: { dimension: 'grade', value: 2 }
+              }
+            },
+            {
+              transform: {
+                type: 'filter',
+                config: { dimension: 'grade', value: 3 }
+              }
+            }
+          ],
+          series: [
+            {
+              type: 'pie',
+              radius: 80,
+              center: ['50%', '50%'],
+              datasetIndex: 1
+            },
+            {
+              type: 'pie',
+              radius: 80,
+              center: ['50%', '50%'],
+              datasetIndex: 2
+            },
+            {
+              type: 'pie',
+              radius: 80,
+              center: ['50%', '75%'],
+              datasetIndex: 3
+            }
+          ],
+          // Optional. Only for responsive layout:
+          media: [
+            {
+              query: { minAspectRatio: 1 },
+              option: {
+                series: [
+                  { center: ['20%', '50%'] },
+                  { center: ['50%', '50%'] },
+                  { center: ['80%', '50%'] }
+                ]
+              }
+            }
+          ]
+        };
+
+        option && myChart.setOption(option);
+
+ </script>
+  <script type="text/javascript">
+      var chartDom = document.getElementById('main3');
+      var myChart = echarts.init(chartDom);
+      var option;
+
+      option = {
+        xAxis: {
+          type: 'category',
+          data: {{ false_type|tojson }}
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: {{ num }},
+            type: 'bar'
+          }
+        ]
+      };
+
+      option && myChart.setOption(option);
+</script>
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="static/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="static/assets/vendor/php-email-form/validate.js"></script>
+  <script src="static/assets/vendor/jquery-sticky/jquery.sticky.js"></script>
+  <script src="static/assets/vendor/venobox/venobox.min.js"></script>
+  <script src="static/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="static/assets/vendor/counterup/counterup.min.js"></script>
+  <script src="static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="static/assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="static/assets/js/main.js"></script>
+
+
+
+</body>
+
+</html>
